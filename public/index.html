@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Wibu API Tester</title>
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@4.1.0/lib/index.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 min-h-screen p-6">
+
+  <h1 class="text-3xl font-bold mb-6 text-center">Wibu API Tester</h1>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+    <!-- Register -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Register</h2>
+      <input id="register-username" class="input" placeholder="Username">
+      <input id="register-nama" class="input" placeholder="Nama">
+      <input id="register-password" type="password" class="input" placeholder="Password">
+      <button onclick="register()" class="btn-primary">Register</button>
+    </div>
+
+    <!-- Login -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Login</h2>
+      <input id="login-username" class="input" placeholder="Username">
+      <input id="login-password" type="password" class="input" placeholder="Password">
+      <div class="flex space-x-2 mt-2">
+        <button onclick="login()" class="btn-primary">Login</button>
+        <button onclick="logout()" class="btn-secondary">Logout</button>
+      </div>
+    </div>
+
+    <!-- Anime List -->
+    <div class="bg-white p-6 rounded-lg shadow md:col-span-2">
+      <div class="flex justify-between items-center mb-4">
+        <h2 class="text-xl font-semibold">Daftar Anime</h2>
+        <button onclick="fetchAnime()" class="btn-primary">Tampil Semua</button>
+      </div>
+      <ul id="anime-list" class="space-y-2"></ul>
+    </div>
+
+    <!-- Tambah Anime -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Tambah Anime</h2>
+      <input id="add-judul" class="input" placeholder="Judul Anime">
+      <button onclick="addAnime()" class="btn-primary">Tambah</button>
+    </div>
+
+    <!-- Edit Anime -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Edit Anime</h2>
+      <input id="edit-id" class="input" placeholder="ID Anime">
+      <input id="edit-judul" class="input" placeholder="Judul Baru">
+      <button onclick="editAnime()" class="btn-primary">Edit</button>
+    </div>
+
+    <!-- Hapus Anime -->
+    <div class="bg-white p-6 rounded-lg shadow">
+      <h2 class="text-xl font-semibold mb-4">Hapus Anime</h2>
+      <input id="delete-id" class="input" placeholder="ID Anime">
+      <button onclick="deleteAnime()" class="btn-danger">Hapus</button>
+    </div>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -12,6 +12,8 @@ app.use('/anggota', require('./routes/anggota'));
 app.use('/anime', require('./routes/anime'));
 app.use('/favorit', require('./routes/favorit'));
 
+app.use(express.static('public'));
+
 // Sync database
 db.sequelize.sync({ force: false }).then(() => {
   console.log('Database connected and tables synced');

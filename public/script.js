@@ -27,6 +27,8 @@ function login() {
     if (data.accessToken) {
       localStorage.setItem('accessToken', data.accessToken);
       alert('Login berhasil!');
+      fetchUserInfo(); // ← tambahkan ini
+      fetchAnime(); // kalau kamu ingin langsung muat data anime
     } else {
       alert('Login gagal!');
     }
@@ -42,6 +44,8 @@ function logout() {
   .then(() => {
     localStorage.removeItem('accessToken');
     alert('Logout berhasil!');
+    document.getElementById('user-username').textContent = '';
+    document.getElementById('user-nama').textContent = '';
   }).catch(console.error);
 }
 
@@ -102,3 +106,30 @@ function alertResponse(data) {
   console.log(data);
   alert(JSON.stringify(data));
 }
+
+function fetchUserInfo() {
+  fetch(`${API_BASE}/auth/me`, {
+    headers: {
+      'Authorization': `Bearer ${localStorage.getItem('accessToken')}`
+    }
+  })
+  .then(res => {
+    if (!res.ok) throw new Error('Gagal mengambil data pengguna');
+    return res.json();
+  })
+  .then(user => {
+    document.getElementById('user-username').textContent = user.username;
+    document.getElementById('user-nama').textContent = user.nama;
+  })
+  .catch(err => {
+    console.error('Gagal ambil data user:', err);
+  });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const token = localStorage.getItem('accessToken');
+  if (token) {
+    fetchUserInfo();
+    fetchAnime();
+  }
+});

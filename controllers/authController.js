@@ -65,6 +65,10 @@ exports.logout = async (req, res) => {
     }
 };
     
+exports.getCurrentUser = (req, res) => {
+  const { id, username, nama } = req.user;
+  res.json({ id, username, nama }); 
+};
 
 // Endpoint untuk refresh token
 exports.refreshToken = (req, res) => {
